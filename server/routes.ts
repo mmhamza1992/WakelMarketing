@@ -27,7 +27,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
 
         await transporter.sendMail({
-          from: process.env.SMTP_USER || "noreply@wakel.io",
+          from: "m@wakel.io",
           to: "m@wakel.io",
           subject: "New Lead – Wakel.io",
           text: `Name: ${lead.name}\nCompany: ${lead.company}\nEmail: ${lead.email}\n---\n${lead.message}`,
@@ -78,7 +78,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
 
         await transporter.sendMail({
-          from: process.env.SMTP_USER || "noreply@wakel.io",
+          from: "m@wakel.io",
           to: "m@wakel.io",
           subject: "Whitepaper Downloaded – MENAT AI Market Report",
           html: `
