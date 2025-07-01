@@ -31,14 +31,7 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className={`${isRTL ? 'lg:order-2' : ''}`}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block bg-wakel-secondary text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6"
-            >
-              {language === 'en' ? '🚀 AI Market Gateway' : '🚀 بوابة سوق الذكاء الاصطناعي'}
-            </motion.div>
+            
 
             <h1 className="text-display text-wakel-text mb-6">
               {language === 'en' ? (
