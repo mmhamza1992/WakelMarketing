@@ -1,123 +1,184 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: hsl(0, 0%, 96.1%);
-  --foreground: hsl(0, 0%, 7.8%);
-  --muted: hsl(0, 0%, 94%);
-  --muted-foreground: hsl(0, 0%, 45%);
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 3.9%);
+  --muted: hsl(0, 0%, 96.1%);
+  --muted-foreground: hsl(0, 0%, 45.1%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(0, 0%, 7.8%);
+  --popover-foreground: hsl(0, 0%, 3.9%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(0, 0%, 7.8%);
-  --border: hsl(0, 0%, 90%);
-  --input: hsl(0, 0%, 95%);
+  --card-foreground: hsl(0, 0%, 3.9%);
+  --border: hsl(0, 0%, 89.8%);
+  --input: hsl(0, 0%, 89.8%);
   --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(0, 0%, 96%);
-  --secondary-foreground: hsl(0, 0%, 7.8%);
-  --accent: hsl(0, 0%, 96%);
-  --accent-foreground: hsl(0, 0%, 7.8%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(0, 0%, 96.1%);
+  --secondary-foreground: hsl(0, 0%, 9%);
+  --accent: hsl(0, 0%, 96.1%);
+  --accent-foreground: hsl(0, 0%, 9%);
   --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --ring: hsl(207, 90%, 54%);
-  --radius: 0.5rem;
-  
-  /* Wakel.io brand colors */
-  --wakel-text: hsl(0, 0%, 7.8%);
-  --wakel-background: hsl(0, 0%, 96.1%);
-  --wakel-primary: hsl(207, 90%, 54%);
-}
-
-.dark {
-  --background: hsl(240, 10%, 3.9%);
-  --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --popover: hsl(240, 10%, 3.9%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 10%, 3.9%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(240, 3.7%, 15.9%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(240, 3.7%, 15.9%);
-  --accent-foreground: hsl(0, 0%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --ring: hsl(207, 90%, 54%);
+  --radius: 0.75rem;
+  
+  /* Wakel.io brand system */
+  --wakel-primary: hsl(207, 90%, 54%);
+  --wakel-secondary: hsl(207, 90%, 96%);
+  --wakel-accent: hsl(45, 100%, 51%);
+  --wakel-text: hsl(0, 0%, 8%);
+  --wakel-muted: hsl(0, 0%, 45%);
+  --wakel-surface: hsl(0, 0%, 98%);
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+* {
+  border-color: hsl(var(--border));
+}
 
-  body {
-    @apply bg-wakel-background text-wakel-text font-sans antialiased;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-  }
+body {
+  background-color: var(--wakel-surface);
+  color: var(--wakel-text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  body.rtl {
-    direction: rtl;
-    font-family: 'Cairo', sans-serif;
-  }
+[dir="rtl"] body {
+  font-family: 'Cairo', sans-serif;
+}
 
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-  }
+/* Typography System */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--wakel-text);
+}
 
-  .gradient-bg {
-    background: linear-gradient(135deg, hsl(207, 90%, 54%) 0%, hsl(207, 85%, 50%) 100%);
-  }
+.text-display {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
 
-  .section-spacing {
-    @apply py-24 lg:py-32;
-  }
+.text-headline {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
 
-  .container-spacing {
-    @apply max-w-7xl mx-auto px-6 lg:px-8;
-  }
+.text-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
 
-  .text-large {
-    @apply text-2xl lg:text-3xl xl:text-4xl;
-  }
+.text-body-large {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--wakel-muted);
+}
 
-  .text-heading {
-    @apply text-6xl lg:text-7xl xl:text-8xl font-bold;
-  }
+.text-body {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--wakel-muted);
+}
 
-  .text-section-title {
-    @apply text-5xl lg:text-6xl xl:text-7xl font-bold;
-  }
+/* Layout System */
+.section-spacing {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+}
 
-  .text-hero-title {
-    @apply text-7xl lg:text-8xl xl:text-9xl font-bold;
+.container-spacing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 2rem);
+}
+
+/* Component System */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--wakel-primary) 0%, hsl(207, 85%, 48%) 100%);
+}
+
+.gradient-subtle {
+  background: linear-gradient(135deg, var(--wakel-secondary) 0%, hsl(207, 90%, 98%) 100%);
+}
+
+.card-elevated {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-elevated:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--wakel-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 14px 0 rgba(14, 125, 240, 0.3);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: hsl(207, 85%, 48%);
+  box-shadow: 0 6px 20px 0 rgba(14, 125, 240, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--wakel-primary);
+  border: 2px solid var(--wakel-primary);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--wakel-primary);
+  color: white;
+}
+
+/* Utility Classes */
+.text-wakel-primary { color: var(--wakel-primary); }
+.text-wakel-text { color: var(--wakel-text); }
+.text-wakel-muted { color: var(--wakel-muted); }
+.bg-wakel-primary { background-color: var(--wakel-primary); }
+.bg-wakel-secondary { background-color: var(--wakel-secondary); }
+.bg-wakel-surface { background-color: var(--wakel-surface); }
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@layer utilities {
-  .text-wakel-text {
-    color: var(--wakel-text);
-  }
-  
-  .bg-wakel-background {
-    background-color: var(--wakel-background);
-  }
-  
-  .text-wakel-primary {
-    color: var(--wakel-primary);
-  }
-  
-  .bg-wakel-primary {
-    background-color: var(--wakel-primary);
-  }
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
 }

@@ -1,108 +1,116 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
-import { Zap, Heart, Network } from 'lucide-react';
+import { Rocket, Target, Lightbulb } from 'lucide-react';
 
 export default function Edge() {
   const { language } = useLanguage();
   const edgeContent = content[language].edge;
-  
-  const icons = [Zap, Heart, Network];
+
+  const differentiators = [
+    {
+      icon: Rocket,
+      title: language === 'en' ? 'Speed to Market' : 'سرعة دخول السوق',
+      description: language === 'en' ? 'Launch in weeks, not months with our streamlined approach' : 'انطلق خلال أسابيع وليس شهور بفضل نهجنا المبسط',
+      metric: '2-4 weeks'
+    },
+    {
+      icon: Target,
+      title: language === 'en' ? 'Precision Targeting' : 'استهداف دقيق',
+      description: language === 'en' ? 'Cultural nuances and local preferences integrated from day one' : 'الفروق الثقافية والتفضيلات المحلية مدمجة من اليوم الأول',
+      metric: '18 markets'
+    },
+    {
+      icon: Lightbulb,
+      title: language === 'en' ? 'Innovation First' : 'الابتكار أولاً',
+      description: language === 'en' ? 'Cutting-edge AI solutions tailored for emerging market dynamics' : 'حلول ذكاء اصطناعي متطورة مصممة لديناميكيات الأسواق الناشئة',
+      metric: '100% custom'
+    }
+  ];
 
   return (
-    <section className="bg-white section-spacing">
+    <section className="section-spacing bg-wakel-secondary">
       <div className="container-spacing">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-section-title text-wakel-text mb-6">
+          <div className="inline-block bg-white text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            {language === 'en' ? 'Our Edge' : 'ميزتنا'}
+          </div>
+
+          <h2 className="text-headline text-wakel-text mb-6">
             {edgeContent.title}
           </h2>
-          <p className="text-large text-gray-600 max-w-4xl mx-auto leading-relaxed">
+
+          <p className="text-body-large max-w-3xl mx-auto">
             {edgeContent.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
-          {edgeContent.items.map((item, index) => {
-            const IconComponent = icons[index];
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 + index * 0.15 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-gray-50 rounded-3xl p-8 h-full hover:bg-white hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-gray-100">
-                  <div className="w-16 h-16 bg-gradient-to-br from-wakel-primary to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="text-white" size={24} />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-wakel-text mb-4">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    {item.description}
-                  </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {differentiators.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="card-elevated p-8 h-full group">
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="w-8 h-8 text-white" />
                 </div>
-              </motion.div>
-            );
-          })}
+
+                <div className="absolute top-4 right-4 bg-wakel-accent text-white px-3 py-1 rounded-full text-sm font-bold">
+                  {item.metric}
+                </div>
+
+                <h3 className="text-title text-wakel-text mb-4">
+                  {item.title}
+                </h3>
+
+                <p className="text-body">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="bg-gray-50 rounded-3xl p-12 border border-gray-100">
-            <h3 className="text-3xl font-bold text-wakel-text mb-6">
+          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+            <h3 className="text-title text-wakel-text mb-6">
               {language === 'en' 
-                ? 'From Weeks to Pilots' 
-                : 'من أسابيع إلى مشاريع تجريبية'
+                ? 'Ready to Lead the MENAT AI Revolution?' 
+                : 'جاهز لقيادة ثورة الذكاء الاصطناعي في المنطقة؟'
               }
             </h3>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            
+            <p className="text-body mb-8 max-w-2xl mx-auto">
               {language === 'en' 
-                ? 'Our proven methodology transforms complex market entry into streamlined partnerships, delivering measurable results in record time.'
-                : 'منهجيتنا المُثبتة تحول دخول السوق المعقد إلى شراكات مبسطة، مما يحقق نتائج قابلة للقياس في وقت قياسي.'
+                ? 'Join visionary AI companies already expanding their reach across the Middle East, North Africa, and Turkey'
+                : 'انضم إلى شركات الذكاء الاصطناعي الرائدة التي تتوسع بالفعل عبر الشرق الأوسط وشمال أفريقيا وتركيا'
               }
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-wakel-primary mb-2">2-4</div>
-                <div className="text-gray-600">
-                  {language === 'en' ? 'Weeks to Partnership' : 'أسابيع للشراكة'}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-wakel-primary mb-2">18</div>
-                <div className="text-gray-600">
-                  {language === 'en' ? 'Markets Accessible' : 'أسواق متاحة'}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-wakel-primary mb-2">100+</div>
-                <div className="text-gray-600">
-                  {language === 'en' ? 'Local Partners' : 'شركاء محليون'}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-wakel-primary mb-2">24/7</div>
-                <div className="text-gray-600">
-                  {language === 'en' ? 'Regional Support' : 'دعم إقليمي'}
-                </div>
-              </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#contact" className="btn-primary">
+                {language === 'en' ? 'Schedule Consultation' : 'احجز استشارة'}
+              </a>
+              <button className="btn-secondary">
+                {language === 'en' ? 'Download Whitepaper' : 'تحميل الدراسة'}
+              </button>
             </div>
           </div>
         </motion.div>

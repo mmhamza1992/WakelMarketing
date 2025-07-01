@@ -1,68 +1,68 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
-import { Handshake, Languages, Network, ArrowRight } from 'lucide-react';
-
-const icons = [Handshake, Languages, Network];
+import { FileText, Globe, Handshake } from 'lucide-react';
 
 export default function Services() {
-  const { language, isRTL } = useLanguage();
+  const { language } = useLanguage();
   const servicesContent = content[language].services;
 
+  const serviceIcons = [FileText, Globe, Handshake];
+
   return (
-    <section className="bg-white section-spacing">
+    <section className="section-spacing bg-wakel-secondary">
       <div className="container-spacing">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-section-title text-wakel-text mb-6">
+          <div className="inline-block bg-white text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            {language === 'en' ? 'Our Services' : 'خدماتنا'}
+          </div>
+
+          <h2 className="text-headline text-wakel-text mb-6">
             {servicesContent.title}
           </h2>
-          <p className="text-large text-gray-600 max-w-3xl mx-auto">
+
+          <p className="text-body-large max-w-3xl mx-auto">
             {language === 'en' 
-              ? 'Comprehensive solutions for scaling AI products across Arabic markets'
-              : 'حلول شاملة لتوسيع منتجات الذكاء الاصطناعي عبر الأسواق العربية'
+              ? 'Three core pillars that accelerate your AI product success in MENAT markets'
+              : 'ثلاث ركائز أساسية تسرع نجاح منتج الذكاء الاصطناعي في أسواق المنطقة'
             }
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {servicesContent.items.map((item, index) => {
-            const Icon = icons[index];
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {servicesContent.items.map((service, index) => {
+            const IconComponent = serviceIcons[index];
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 + index * 0.15 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="group hover:scale-105 transition-all duration-300"
+                className="card-elevated p-8 text-center group"
               >
-                <div className="bg-white border border-gray-100 p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-gradient-to-br from-wakel-primary to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="text-white" size={24} />
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-wakel-text mb-4 leading-tight">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    {item.description}
-                  </p>
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <IconComponent className="w-8 h-8 text-white" />
+                </div>
 
-                  <div className="flex items-center text-wakel-primary font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                    <span className="text-sm">
-                      {language === 'en' ? 'Learn more' : 'اعرف المزيد'}
-                    </span>
-                    <ArrowRight 
-                      className={`ml-2 h-4 w-4 ${isRTL ? 'rotate-180 mr-2 ml-0' : ''}`} 
-                    />
-                  </div>
+                <h3 className="text-title text-wakel-text mb-4">
+                  {service.title}
+                </h3>
+
+                <p className="text-body mb-6">
+                  {service.description}
+                </p>
+
+                <div className="pt-4 border-t border-wakel-secondary">
+                  <span className="text-sm font-semibold text-wakel-primary">
+                    {language === 'en' ? `Step ${index + 1}` : `الخطوة ${index + 1}`}
+                  </span>
                 </div>
               </motion.div>
             );
@@ -72,23 +72,26 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-wakel-primary/5 to-blue-500/5 rounded-3xl p-12 border border-wakel-primary/10">
-            <h3 className="text-2xl font-bold text-wakel-text mb-4">
+          <div className="bg-white p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
+            <h3 className="text-title text-wakel-text mb-4">
               {language === 'en' 
-                ? 'Ready to expand into MENAT markets?' 
-                : 'جاهز للتوسع في أسواق المنطقة؟'
+                ? 'Complete Market Entry Package' 
+                : 'حزمة دخول السوق الكاملة'
               }
             </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-body mb-6">
               {language === 'en' 
-                ? 'Our end-to-end solution covers everything from legal agreements to technical localization and market entry strategy.'
-                : 'حلولنا الشاملة تغطي كل شيء من الاتفاقيات القانونية إلى التعريب التقني واستراتيجية دخول السوق.'
+                ? 'From legal framework to cultural adaptation - everything you need for successful MENAT expansion'
+                : 'من الإطار القانوني إلى التكيف الثقافي - كل ما تحتاجه للتوسع الناجح في المنطقة'
               }
             </p>
+            <a href="#contact" className="btn-primary">
+              {language === 'en' ? 'Start Your Journey' : 'ابدأ رحلتك'}
+            </a>
           </div>
         </motion.div>
       </div>

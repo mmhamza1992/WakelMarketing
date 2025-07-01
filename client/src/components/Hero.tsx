@@ -1,31 +1,46 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Globe, Users, Zap } from 'lucide-react';
 
 export default function Hero() {
   const { language, isRTL } = useLanguage();
   const heroContent = content[language].hero;
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const stats = [
+    { icon: Globe, value: '18', label: language === 'en' ? 'Markets' : 'أسواق' },
+    { icon: Users, value: '450M+', label: language === 'en' ? 'Population' : 'سكان' },
+    { icon: Zap, value: '$12B+', label: language === 'en' ? 'AI Market' : 'سوق الذكاء الاصطناعي' }
+  ];
 
   return (
-    <section className="bg-white section-spacing relative overflow-hidden">
-      <div className="container-spacing">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center min-h-[80vh]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-wakel-surface">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-br from-wakel-primary via-transparent to-wakel-accent"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-wakel-primary rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div className="absolute bottom-20 right-20 w-72 h-72 bg-wakel-accent rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+      </div>
+
+      <div className="container-spacing relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-7 max-w-4xl"
+            transition={{ duration: 0.8 }}
+            className={`${isRTL ? 'lg:order-2' : ''}`}
           >
-            <h1 className="text-hero-title text-wakel-text leading-tight mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-block bg-wakel-secondary text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6"
+            >
+              {language === 'en' ? '🚀 AI Market Gateway' : '🚀 بوابة سوق الذكاء الاصطناعي'}
+            </motion.div>
+
+            <h1 className="text-display text-wakel-text mb-6">
               {language === 'en' ? (
                 <>
                   Your Gateway to the{' '}
@@ -35,62 +50,90 @@ export default function Hero() {
                 heroContent.title
               )}
             </h1>
-            <p className="text-large text-gray-600 mb-16 leading-relaxed max-w-3xl">
+
+            <p className="text-body-large mb-8 max-w-xl">
               {heroContent.subtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={scrollToContact}
-                size="lg"
-                className="gradient-bg text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 group"
-              >
-                {heroContent.cta}
-                <ArrowRight 
-                  className={`ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 mr-2 ml-0 group-hover:-translate-x-1' : ''}`} 
-                />
-              </Button>
-            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 mb-12"
+            >
+              <a href="#contact" className="btn-primary inline-flex items-center justify-center">
+                {language === 'en' ? 'Get Started' : 'ابدأ الآن'}
+                <ArrowRight className={`w-5 h-5 ml-2 ${isRTL ? 'rotate-180 mr-2 ml-0' : ''}`} />
+              </a>
+              <button className="btn-secondary">
+                {language === 'en' ? 'Learn More' : 'اعرف المزيد'}
+              </button>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="grid grid-cols-3 gap-8"
+            >
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-12 h-12 bg-wakel-secondary rounded-xl flex items-center justify-center mx-auto mb-2">
+                    <stat.icon className="w-6 h-6 text-wakel-primary" />
+                  </div>
+                  <div className="text-2xl font-bold text-wakel-text">{stat.value}</div>
+                  <div className="text-sm text-wakel-muted">{stat.label}</div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
-          
+
+          {/* Visual */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5"
+            className={`${isRTL ? 'lg:order-1' : ''}`}
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-wakel-primary/20 to-blue-500/20 rounded-3xl blur-3xl"></div>
-              <div className="relative bg-white p-8 rounded-3xl shadow-2xl border border-gray-100">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div className="w-12 h-12 bg-wakel-primary rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">18</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-wakel-text">Arabic Markets</p>
-                      <p className="text-gray-600 text-sm">Countries covered</p>
-                    </div>
+              {/* Main Visual */}
+              <div className="relative bg-white p-8 rounded-3xl shadow-2xl">
+                <div className="aspect-square bg-gradient-primary rounded-2xl flex items-center justify-center mb-6">
+                  <div className="text-white text-center">
+                    <div className="text-4xl font-bold mb-2">MENAT</div>
+                    <div className="text-lg opacity-90">AI Gateway</div>
                   </div>
-                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">100M+</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-wakel-text">Users</p>
-                      <p className="text-gray-600 text-sm">Arabic internet users</p>
-                    </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-wakel-secondary p-4 rounded-xl text-center">
+                    <div className="text-2xl font-bold text-wakel-primary">18</div>
+                    <div className="text-sm text-wakel-muted">Countries</div>
                   </div>
-                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">24%</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-wakel-text">Growth YoY</p>
-                      <p className="text-gray-600 text-sm">AI adoption budgets</p>
-                    </div>
+                  <div className="bg-wakel-secondary p-4 rounded-xl text-center">
+                    <div className="text-2xl font-bold text-wakel-primary">450M+</div>
+                    <div className="text-sm text-wakel-muted">Users</div>
                   </div>
                 </div>
               </div>
+
+              {/* Floating Elements */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -top-4 -right-4 bg-wakel-accent text-white p-4 rounded-xl shadow-lg"
+              >
+                <Zap className="w-6 h-6" />
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                className="absolute -bottom-4 -left-4 bg-wakel-primary text-white p-4 rounded-xl shadow-lg"
+              >
+                <Globe className="w-6 h-6" />
+              </motion.div>
             </div>
           </motion.div>
         </div>

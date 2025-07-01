@@ -59,25 +59,30 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-gray-50 section-spacing">
+    <section id="contact" className="section-spacing bg-white">
       <div className="container-spacing">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
           <div className="text-center mb-16">
-            <h2 className="text-section-title text-wakel-text mb-6">
+            <div className="inline-block bg-wakel-secondary text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              {language === 'en' ? 'Get Started' : 'ابدأ معنا'}
+            </div>
+
+            <h2 className="text-headline text-wakel-text mb-6">
               {contactContent.title}
             </h2>
-            <p className="text-large text-gray-600 max-w-2xl mx-auto">
+            
+            <p className="text-body-large max-w-2xl mx-auto">
               {contactContent.subtitle}
             </p>
           </div>
           
-          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-12">
+          <div className="card-elevated p-12">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -86,13 +91,13 @@ export default function ContactForm() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-lg font-semibold text-wakel-text">
+                        <FormLabel className="text-body font-semibold text-wakel-text">
                           {contactContent.form.name} *
                         </FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
-                            className="h-14 text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200"
+                            className="h-14 text-base border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200 bg-wakel-surface"
                           />
                         </FormControl>
                         <FormMessage />
@@ -104,13 +109,13 @@ export default function ContactForm() {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-lg font-semibold text-wakel-text">
+                        <FormLabel className="text-body font-semibold text-wakel-text">
                           {contactContent.form.company} *
                         </FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
-                            className="h-14 text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200"
+                            className="h-14 text-base border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200 bg-wakel-surface"
                           />
                         </FormControl>
                         <FormMessage />
@@ -123,14 +128,14 @@ export default function ContactForm() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-lg font-semibold text-wakel-text">
+                      <FormLabel className="text-body font-semibold text-wakel-text">
                         {contactContent.form.email} *
                       </FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
                           type="email"
-                          className="h-14 text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200"
+                          className="h-14 text-base border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200 bg-wakel-surface"
                         />
                       </FormControl>
                       <FormMessage />
@@ -142,14 +147,15 @@ export default function ContactForm() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-lg font-semibold text-wakel-text">
+                      <FormLabel className="text-body font-semibold text-wakel-text">
                         {contactContent.form.message} *
                       </FormLabel>
                       <FormControl>
                         <Textarea 
                           {...field} 
                           rows={6}
-                          className="text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200 resize-none"
+                          className="text-base border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200 resize-none bg-wakel-surface"
+                          placeholder={language === 'en' ? 'Tell us about your AI product and MENAT expansion goals...' : 'أخبرنا عن منتج الذكاء الاصطناعي وأهداف التوسع في المنطقة...'}
                         />
                       </FormControl>
                       <FormMessage />
@@ -157,25 +163,39 @@ export default function ContactForm() {
                   )}
                 />
                 <div className="pt-6">
-                  <Button 
+                  <button 
                     type="submit"
                     disabled={contactMutation.isPending}
-                    size="lg"
-                    className="w-full gradient-bg text-white px-8 py-6 text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-200"
+                    className="btn-primary w-full"
                   >
                     {contactMutation.isPending ? (
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center justify-center space-x-2">
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Sending...</span>
+                        <span>{language === 'en' ? 'Sending...' : 'جاري الإرسال...'}</span>
                       </div>
                     ) : (
                       contactContent.form.submit
                     )}
-                  </Button>
+                  </button>
                 </div>
               </form>
             </Form>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <p className="text-body text-wakel-muted">
+              {language === 'en' 
+                ? 'Typically respond within 24 hours • All conversations are confidential'
+                : 'نرد عادة خلال 24 ساعة • جميع المحادثات سرية'
+              }
+            </p>
+          </motion.div>
         </motion.div>
       </div>
     </section>

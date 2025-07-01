@@ -1,88 +1,124 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
-import { TrendingUp, Users, Shield } from 'lucide-react';
+import { TrendingUp, Shield, Users, Star } from 'lucide-react';
 
 export default function WhyMenat() {
   const { language } = useLanguage();
   const whyMenatContent = content[language].whyMenat;
-  
-  const icons = [Users, TrendingUp, Shield];
+
+  const advantages = [
+    {
+      icon: TrendingUp,
+      title: language === 'en' ? 'Fastest Growing Region' : 'أسرع منطقة نمواً',
+      description: language === 'en' ? 'AI adoption accelerating at 24% annually' : 'تسارع اعتماد الذكاء الاصطناعي بنسبة 24% سنوياً'
+    },
+    {
+      icon: Users,
+      title: language === 'en' ? 'Young Demographics' : 'تركيبة سكانية شابة',
+      description: language === 'en' ? 'Tech-savvy population under 35' : 'سكان متقنون للتكنولوجيا تحت سن 35'
+    },
+    {
+      icon: Shield,
+      title: language === 'en' ? 'Regulatory Clarity' : 'وضوح تنظيمي',
+      description: language === 'en' ? 'Progressive AI governance frameworks' : 'أطر حوكمة تقدمية للذكاء الاصطناعي'
+    }
+  ];
 
   return (
-    <section className="bg-gray-50 section-spacing">
+    <section className="section-spacing bg-white">
       <div className="container-spacing">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-section-title text-wakel-text mb-6">
+          <div className="inline-block bg-wakel-secondary text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            {language === 'en' ? 'Market Opportunity' : 'فرصة السوق'}
+          </div>
+
+          <h2 className="text-headline text-wakel-text mb-6">
             {whyMenatContent.title}
           </h2>
-          <p className="text-large text-gray-600 max-w-3xl mx-auto">
+
+          <p className="text-body-large max-w-3xl mx-auto">
             {language === 'en' 
-              ? 'The MENAT region represents one of the fastest-growing AI markets globally'
-              : 'تمثل منطقة الشرق الأوسط وشمال أفريقيا واحدة من أسرع الأسواق نمواً للذكاء الاصطناعي عالمياً'
+              ? 'Strategic advantages that make MENAT the premier destination for AI expansion'
+              : 'المزايا الاستراتيجية التي تجعل المنطقة الوجهة الأولى للتوسع في الذكاء الاصطناعي'
             }
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {whyMenatContent.points.map((point, index) => {
-            const IconComponent = icons[index];
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 + index * 0.15 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group hover:scale-105 transition-all duration-300"
-              >
-                <div className="w-20 h-20 bg-gradient-to-br from-wakel-primary to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <IconComponent className="text-white" size={32} />
-                </div>
-                <p className="text-xl text-gray-700 font-semibold leading-relaxed">
-                  {point}
-                </p>
-              </motion.div>
-            );
-          })}
+          {advantages.map((advantage, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="w-20 h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-6">
+                <advantage.icon className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-title text-wakel-text mb-4">
+                {advantage.title}
+              </h3>
+              <p className="text-body">
+                {advantage.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-wakel-primary to-blue-600 rounded-3xl p-12 text-white text-center"
+          className="bg-gradient-primary rounded-3xl p-12 text-white text-center"
         >
-          <h3 className="text-3xl font-bold mb-6">
+          <div className="flex items-center justify-center mb-6">
+            <Star className="w-8 h-8 text-yellow-300 mr-2" />
+            <h3 className="text-title">
+              {language === 'en' ? 'Regional Leadership' : 'الريادة الإقليمية'}
+            </h3>
+            <Star className="w-8 h-8 text-yellow-300 ml-2" />
+          </div>
+
+          <p className="text-body-large mb-8 opacity-90">
             {language === 'en' 
-              ? 'Market Opportunity' 
-              : 'فرصة السوق'
+              ? 'Position your AI product at the forefront of the next digital transformation wave'
+              : 'ضع منتج الذكاء الاصطناعي الخاص بك في المقدمة لموجة التحول الرقمي القادمة'
             }
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div className="text-4xl font-bold mb-2">$12B+</div>
-              <div className="text-blue-100">
-                {language === 'en' ? 'AI Market Value' : 'قيمة سوق الذكاء الاصطناعي'}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+              <div className="text-2xl font-bold">1st</div>
+              <div className="text-sm opacity-80">
+                {language === 'en' ? 'Mover Advantage' : 'ميزة الريادة'}
               </div>
             </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">450M</div>
-              <div className="text-blue-100">
-                {language === 'en' ? 'Population' : 'السكان'}
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+              <div className="text-2xl font-bold">5x</div>
+              <div className="text-sm opacity-80">
+                {language === 'en' ? 'ROI Potential' : 'إمكانية العائد'}
               </div>
             </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">70%</div>
-              <div className="text-blue-100">
-                {language === 'en' ? 'Youth Demographics' : 'الشباب'}
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+              <div className="text-2xl font-bold">0</div>
+              <div className="text-sm opacity-80">
+                {language === 'en' ? 'Market Saturation' : 'تشبع السوق'}
+              </div>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+              <div className="text-2xl font-bold">∞</div>
+              <div className="text-sm opacity-80">
+                {language === 'en' ? 'Growth Ceiling' : 'سقف النمو'}
               </div>
             </div>
           </div>
