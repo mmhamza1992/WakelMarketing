@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
 import { Rocket, Target, Lightbulb } from 'lucide-react';
+import WhitepaperDownload from './WhitepaperDownload';
 
 export default function Edge() {
   const { language } = useLanguage();
@@ -108,9 +109,11 @@ export default function Edge() {
               <a href="#contact" className="btn-primary">
                 {language === 'en' ? 'Schedule Consultation' : 'احجز استشارة'}
               </a>
-              <button className="btn-secondary">
-                {language === 'en' ? 'Download Whitepaper' : 'تحميل الدراسة'}
-              </button>
+              <WhitepaperDownload>
+                <button className="btn-secondary">
+                  {language === 'en' ? 'Download Whitepaper' : 'تحميل الدراسة'}
+                </button>
+              </WhitepaperDownload>
             </div>
           </div>
         </motion.div>

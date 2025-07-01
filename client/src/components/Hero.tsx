@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
 import { ArrowRight, Globe, Users, Zap } from 'lucide-react';
+import WhitepaperDownload from './WhitepaperDownload';
 
 export default function Hero() {
   const { language, isRTL } = useLanguage();
@@ -58,9 +59,11 @@ export default function Hero() {
                 {language === 'en' ? 'Get Started' : 'ابدأ الآن'}
                 <ArrowRight className={`w-5 h-5 ml-2 ${isRTL ? 'rotate-180 mr-2 ml-0' : ''}`} />
               </a>
-              <button className="btn-secondary">
-                {language === 'en' ? 'Learn More' : 'اعرف المزيد'}
-              </button>
+              <WhitepaperDownload>
+                <button className="btn-secondary">
+                  {language === 'en' ? 'Learn More' : 'اعرف المزيد'}
+                </button>
+              </WhitepaperDownload>
             </motion.div>
 
             {/* Stats */}

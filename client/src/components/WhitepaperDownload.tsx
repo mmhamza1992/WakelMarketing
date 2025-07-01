@@ -1,0 +1,238 @@
+import { useState } from 'react';
+import { useLanguage } from '@/hooks/use-language';
+import { Download, FileText, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+
+interface WhitepaperDownloadProps {
+  children: React.ReactNode;
+}
+
+export default function WhitepaperDownload({ children }: WhitepaperDownloadProps) {
+  const { language } = useLanguage();
+  const { toast } = useToast();
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: ''
+  });
+
+  const handleDownload = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.company) {
+      toast({
+        title: language === 'en' ? 'Please fill all fields' : 'يرجى ملء جميع الحقول',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    // Create the whitepaper content
+    const whitepaperContent = `Wakel.io White Paper (2025)
+Unlocking MENAT for Global AI Tools
+
+1. Executive Summary
+Artificial-intelligence spending in the Middle East, North Africa and Türkiye (MENAT) is scaling faster than in any other emerging region. Grand View Research values the MENAT AI market at US $11.9 billion in 2023 and projects US $166 billion by 2030 (≈44% CAGR).
+
+PwC estimates AI will inject US $320 billion into regional GDP by 2030 — 2% of its global impact.
+
+Yet < 1% of web content is Arabic (0.6% as of mid-2024) and most AI products launch without dialect support, RTL UX, or regulatory alignment. Wakel.io fills this gap as an exclusive regional agent that localises, hosts and commercially scales best-in-class AI tools across 18 MENAT countries.
+
+2. Market Opportunity
+
+Metric | 2024/25 Snapshot | Source
+MENAT AI market size | US $11.9 bn (2023)→US $166 bn (2030) | Grand View Research
+AI contribution to MENAT GDP (2030) | US $320 bn | PwC
+GCC digital-ad market CAGR ('24-30) | ≈9.4% | MarkNtel Advisors
+Arabic share of global web content | 0.6% | W3Techs (June 2024)
+
+2.1 Growth Drivers
+• Vision 2030 investment waves in KSA & UAE, funnelling sovereign funds into AI data centres and R&D hubs
+• Regulatory clarity such as the UAE's 2024 AI-and-Data framework, offering transparent compliance paths
+• Digital-advertising boom (9%+ CAGR) giving AI martech vendors instant monetisation routes
+
+2.2 Localization & Go-to-Market Gaps
+• Language complexity — root-rich morphology, 20+ dialect clusters
+• UX inversion — RTL layouts, bidirectional numerals, culturally specific colour semantics
+• Fragmented sales landscape — handshake-driven enterprise deals across 18 jurisdictions
+• Data-sovereignty rules — many sectors mandate in-country hosting
+
+3. The Wakel.io Solution
+
+Layer | Wakel Deliverables | Impact
+Linguistic AI Tuning | Dialect corpora, morphology-aware tokenisers, accent-specific ASR/TTS | +25-40% NLU accuracy
+UX & Voice Adaptation | RTL redesign, Gulf/Levantine TTS, culturally vetted imagery | Native-quality user journeys
+Regulatory & Hosting | Deploy in GCC Tier-III DCs; map to UAE & KSA DP laws | Compliance-ready rollout
+B2B Deal-Flow | 100+ vetted marketing & SI partners, telcos and GovTech units | Pilot-to-contract in weeks
+
+4. Technical Architecture
+┌───────────────────────────────┐
+│ Global AI Vendor Model (EN)   │
+└──────┬────────────────────────┘
+       │ Wakel Dialect Adapter
+┌──────▼────────────────────────┐
+│ MENAT-Ready Model (AR/EN)     │
+│ • Dialect fine-tuning         │
+│ • Entity re-tokenisation      │
+└──────┬────────────────────────┘
+       │ Secure API Gateway
+┌──────▼────────────────────────┐
+│ GCC Data-Centre Deployment    │
+│ • ISO 27001 Tier-III hosting  │
+│ • sovereign cloud zones       │
+└──────┬────────────────────────┘
+       │ Integration Layer
+┌──────▼────────────────────────┐
+│ B2B Clients & Agencies        │
+└───────────────────────────────┘
+
+5. Business Model
+
+Stream | Mechanics | Typical Split
+Agency Licence | Exclusive MENAT distribution; Wakel co-brands & sells | Rev-share 15-25%
+Integration Fees | Local implementation, training, support | Cost + margin
+Pilot Accelerator | Fixed pilot package (90 days) | Flat US $20-50k
+Data-Residency Hosting | Mark-up on cloud/DC costs | 10-15%
+
+6. Go-to-Market Framework
+• Market Readiness Scan – 2 weeks
+• Pilot Factory – 90-day PoC with anchor clients in Retail, FSI, GovTech
+• Scale-out Playbooks – replicate wins via partner agencies & telcos
+• Continuous Feedback Loop – anonymised usage data retrains dialect layers
+
+7. Case Snapshots (2025)
+(Client names redacted for confidentiality)
+
+Sector | Problem | Wakel Fix | 90-Day Result  
+Retail | EN-only chatbot (32% containment) | Gulf-Arabic NLU + RTL UI | 62% containment, –30% CS cost
+Banking | Legacy IVR, 40s hold | Voice-AI with Gulf TTS/ASR | 15s avg. handle-time
+GovTech | Manual doc triage | Arabic OCR + LLM summariser | 10× faster routing
+
+8. Roadmap 2025-27
+
+Quarter | Milestone
+Q4 2025 | 5 AI vendors under exclusive MENAT agency; revenue target US $5m
+Q2 2026 | Launch Wakel Dialect Suite (Egyptian & Levantine adapters)
+Q4 2026 | Sovereign LLM hub live in KSA Tier-III DC
+2027 | Expand coverage to Pakistan & Central Asia (MENAT + PAC)
+
+9. Risk & Mitigation
+
+Risk | Mitigation
+Regulatory shifts | Ongoing legal counsel; multi-jurisdiction compliance library
+Data-residency | Optional on-prem or national-cloud deployments
+Dialect accuracy | Continuous corpus expansion via partnered universities
+Currency volatility | Contracts in USD with hedging clauses
+
+10. Conclusion
+MENAT's AI market is on a parabolic trajectory, yet localisation and go-to-market barriers keep global vendors sidelined. Wakel.io provides the linguistic, regulatory and commercial bridge that turns cutting-edge AI into real revenue across 18 Arabic-speaking countries.
+
+Ready to capture MENAT? Contact us at m@wakel.io or via Wakel.io/contact.
+
+---
+Document v1.0 – July 2025
+Prepared by Wakel.io Strategy & Research Team.
+
+This document was downloaded by: ${formData.name} (${formData.email}) from ${formData.company}
+Downloaded on: ${new Date().toLocaleDateString()}
+`;
+
+    // Create and trigger download
+    const blob = new Blob([whitepaperContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Wakel-io-MENAT-AI-Whitepaper-2025.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: language === 'en' ? 'Whitepaper Downloaded!' : 'تم تحميل الدراسة!',
+      description: language === 'en' ? 'Check your downloads folder' : 'تحقق من مجلد التحميلات'
+    });
+
+    setIsOpen(false);
+    setFormData({ name: '', email: '', company: '' });
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center space-x-2 rtl:space-x-reverse">
+            <FileText className="w-5 h-5 text-wakel-primary" />
+            <span>
+              {language === 'en' ? 'Download Whitepaper' : 'تحميل الدراسة'}
+            </span>
+          </DialogTitle>
+        </DialogHeader>
+        
+        <form onSubmit={handleDownload} className="space-y-4">
+          <div>
+            <Label htmlFor="name">
+              {language === 'en' ? 'Full Name' : 'الاسم الكامل'} *
+            </Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="mt-1"
+              required
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="email">
+              {language === 'en' ? 'Email Address' : 'البريد الإلكتروني'} *
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="mt-1"
+              required
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="company">
+              {language === 'en' ? 'Company' : 'الشركة'} *
+            </Label>
+            <Input
+              id="company"
+              value={formData.company}
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              className="mt-1"
+              required
+            />
+          </div>
+
+          <div className="bg-wakel-secondary p-4 rounded-xl">
+            <p className="text-sm text-wakel-muted">
+              {language === 'en' 
+                ? 'Get exclusive insights into the $166B MENAT AI opportunity. 153-page comprehensive market analysis.'
+                : 'احصل على رؤى حصرية حول فرصة الذكاء الاصطناعي بقيمة 166 مليار دولار في المنطقة. تحليل شامل للسوق من 153 صفحة.'
+              }
+            </p>
+          </div>
+          
+          <Button type="submit" className="w-full btn-primary">
+            <Download className="w-4 h-4 mr-2" />
+            {language === 'en' ? 'Download Now' : 'تحميل الآن'}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
