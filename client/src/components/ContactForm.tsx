@@ -59,8 +59,8 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="section-spacing bg-white">
-      <div className="container-spacing">
+    <section id="contact" className="py-20 lg:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

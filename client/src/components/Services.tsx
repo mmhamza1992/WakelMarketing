@@ -35,7 +35,7 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {servicesContent.items.map((service, index) => {
             const IconComponent = serviceIcons[index];
             return (

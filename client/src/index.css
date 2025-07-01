@@ -182,3 +182,45 @@ h1, h2, h3, h4, h5, h6 {
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out;
 }
+
+/* Arabic Typography & RTL Improvements */
+[dir="rtl"] .text-display {
+  line-height: 1.25;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+[dir="rtl"] .text-headline {
+  line-height: 1.35;
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+}
+
+[dir="rtl"] .text-title {
+  line-height: 1.4;
+  font-size: clamp(1.25rem, 2.75vw, 1.75rem);
+}
+
+[dir="rtl"] .text-body-large {
+  line-height: 1.75;
+  font-size: clamp(1.15rem, 2.25vw, 1.35rem);
+}
+
+[dir="rtl"] .text-body {
+  line-height: 1.7;
+  font-size: clamp(1.05rem, 1.75vw, 1.2rem);
+}
+
+/* Better section spacing for Arabic content */
+[dir="rtl"] section {
+  padding-top: clamp(5rem, 10vw, 8rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+}
+
+/* Improved card spacing for Arabic */
+[dir="rtl"] .card-elevated {
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+/* Grid adjustments for Arabic content */
+[dir="rtl"] .grid {
+  gap: clamp(2rem, 4vw, 3rem);
+}
