@@ -59,35 +59,78 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="bg-gray-50 py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="contact" className="bg-gray-50 section-spacing">
+      <div className="container-spacing">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto text-center"
+          className="max-w-4xl mx-auto"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-wakel-text mb-6">
-            {contactContent.title}
-          </h2>
-          <p className="text-xl text-gray-600 mb-12">
-            {contactContent.subtitle}
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="text-section-title text-wakel-text mb-6">
+              {contactContent.title}
+            </h2>
+            <p className="text-large text-gray-600 max-w-2xl mx-auto">
+              {contactContent.subtitle}
+            </p>
+          </div>
           
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-12">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-lg font-semibold text-wakel-text">
+                          {contactContent.form.name} *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            className="h-14 text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-lg font-semibold text-wakel-text">
+                          {contactContent.form.company} *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            className="h-14 text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{contactContent.form.name} *</FormLabel>
+                      <FormLabel className="text-lg font-semibold text-wakel-text">
+                        {contactContent.form.email} *
+                      </FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
-                          className="rounded-2xl h-12 focus:ring-2 focus:ring-wakel-primary transition-all duration-200"
+                          type="email"
+                          className="h-14 text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200"
                         />
                       </FormControl>
                       <FormMessage />
@@ -96,64 +139,43 @@ export default function ContactForm() {
                 />
                 <FormField
                   control={form.control}
-                  name="company"
+                  name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{contactContent.form.company} *</FormLabel>
+                      <FormLabel className="text-lg font-semibold text-wakel-text">
+                        {contactContent.form.message} *
+                      </FormLabel>
                       <FormControl>
-                        <Input 
+                        <Textarea 
                           {...field} 
-                          className="rounded-2xl h-12 focus:ring-2 focus:ring-wakel-primary transition-all duration-200"
+                          rows={6}
+                          className="text-lg border-2 border-gray-200 focus:border-wakel-primary rounded-xl transition-all duration-200 resize-none"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </div>
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{contactContent.form.email} *</FormLabel>
-                    <FormControl>
-                      <Input 
-                        {...field} 
-                        type="email"
-                        className="rounded-2xl h-12 focus:ring-2 focus:ring-wakel-primary transition-all duration-200"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{contactContent.form.message} *</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        {...field} 
-                        rows={5}
-                        className="rounded-2xl focus:ring-2 focus:ring-wakel-primary transition-all duration-200 resize-none"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button 
-                type="submit"
-                disabled={contactMutation.isPending}
-                className="w-full gradient-bg text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 h-auto"
-              >
-                {contactMutation.isPending ? '...' : contactContent.form.submit}
-              </Button>
-            </form>
-          </Form>
+                <div className="pt-6">
+                  <Button 
+                    type="submit"
+                    disabled={contactMutation.isPending}
+                    size="lg"
+                    className="w-full gradient-bg text-white px-8 py-6 text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-200"
+                  >
+                    {contactMutation.isPending ? (
+                      <div className="flex items-center space-x-2">
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Sending...</span>
+                      </div>
+                    ) : (
+                      contactContent.form.submit
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          </div>
         </motion.div>
       </div>
     </section>

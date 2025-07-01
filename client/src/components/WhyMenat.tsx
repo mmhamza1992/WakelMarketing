@@ -1,56 +1,92 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/use-language';
 import { content } from '@/lib/content';
-import { Check } from 'lucide-react';
+import { TrendingUp, Users, Shield } from 'lucide-react';
 
 export default function WhyMenat() {
   const { language } = useLanguage();
   const whyMenatContent = content[language].whyMenat;
+  
+  const icons = [Users, TrendingUp, Shield];
 
   return (
-    <section className="bg-gray-50 py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-wakel-text mb-8">
-              {whyMenatContent.title}
-            </h2>
-            <div className="space-y-6">
-              {whyMenatContent.points.map((point, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-start space-x-4 rtl:space-x-reverse"
-                >
-                  <div className="w-6 h-6 bg-wakel-primary rounded-full flex items-center justify-center mt-1">
-                    <Check className="text-white" size={16} />
-                  </div>
-                  <p className="text-lg text-gray-600">{point}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-              alt="AI technology innovation" 
-              className="rounded-2xl shadow-lg w-full h-auto"
-            />
-          </motion.div>
+    <section className="bg-gray-50 section-spacing">
+      <div className="container-spacing">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-section-title text-wakel-text mb-6">
+            {whyMenatContent.title}
+          </h2>
+          <p className="text-large text-gray-600 max-w-3xl mx-auto">
+            {language === 'en' 
+              ? 'The MENAT region represents one of the fastest-growing AI markets globally'
+              : 'تمثل منطقة الشرق الأوسط وشمال أفريقيا واحدة من أسرع الأسواق نمواً للذكاء الاصطناعي عالمياً'
+            }
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {whyMenatContent.points.map((point, index) => {
+            const IconComponent = icons[index];
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 + index * 0.15 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 text-center group hover:scale-105 transition-all duration-300"
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-wakel-primary to-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <IconComponent className="text-white" size={32} />
+                </div>
+                <p className="text-xl text-gray-700 font-semibold leading-relaxed">
+                  {point}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-wakel-primary to-blue-600 rounded-3xl p-12 text-white text-center"
+        >
+          <h3 className="text-3xl font-bold mb-6">
+            {language === 'en' 
+              ? 'Market Opportunity' 
+              : 'فرصة السوق'
+            }
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div className="text-4xl font-bold mb-2">$12B+</div>
+              <div className="text-blue-100">
+                {language === 'en' ? 'AI Market Value' : 'قيمة سوق الذكاء الاصطناعي'}
+              </div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-2">450M</div>
+              <div className="text-blue-100">
+                {language === 'en' ? 'Population' : 'السكان'}
+              </div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-2">70%</div>
+              <div className="text-blue-100">
+                {language === 'en' ? 'Youth Demographics' : 'الشباب'}
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
