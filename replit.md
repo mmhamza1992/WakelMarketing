@@ -18,7 +18,7 @@ This is a bilingual (English/Arabic) marketing website for Wakel.io, designed as
 ### Backend Architecture
 - **Runtime**: Node.js with Express.js framework
 - **Language**: TypeScript with ES modules
-- **Database**: PostgreSQL with Drizzle ORM
+- **Database**: PostgreSQL with Drizzle ORM (DatabaseStorage implementation)
 - **Email Service**: Nodemailer with Titan SMTP integration
 - **Session Management**: Built-in memory storage for development
 
@@ -114,7 +114,8 @@ This is a bilingual (English/Arabic) marketing website for Wakel.io, designed as
 
 ## Changelog
 
-- July 01, 2025. Initial setup
+- July 01, 2025 - Initial setup
+- July 01, 2025 - Database integration: Replaced MemStorage with PostgreSQL DatabaseStorage implementation
 
 ## User Preferences
 
