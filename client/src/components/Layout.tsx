@@ -38,14 +38,6 @@ export default function Layout({ children }: LayoutProps) {
       <footer className="bg-wakel-text text-white section-spacing">
         <div className="container-spacing">
           <div className="text-center">
-            <div className="mx-auto mb-8 text-center">
-              <div className="text-3xl font-bold text-white mb-2 tracking-wide">
-                Wakel.io
-              </div>
-              <div className="text-sm text-gray-300 font-medium">
-                {language === 'en' ? 'Your Gateway to the MENAT AI Market' : 'بوابتك لسوق الذكاء الاصطناعي في المنطقة'}
-              </div>
-            </div>
             <p className="text-body-large text-gray-300 mb-8 max-w-2xl mx-auto">
               {content[language].footer.tagline}
             </p>
