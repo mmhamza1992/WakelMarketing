@@ -89,24 +89,24 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className={`${isRTL ? 'lg:order-1' : ''}`}
           >
-            <div className="relative">
+            <div className="relative max-w-md mx-auto">
               {/* Main Visual */}
-              <div className="relative bg-white p-8 rounded-3xl shadow-2xl">
-                <div className="aspect-square bg-gradient-primary rounded-2xl flex items-center justify-center mb-6">
+              <div className="relative bg-white p-6 rounded-3xl shadow-2xl">
+                <div className="w-full h-48 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6">
                   <div className="text-white text-center">
-                    <div className="text-4xl font-bold mb-2">MENAT</div>
-                    <div className="text-lg opacity-90">AI Gateway</div>
+                    <div className="text-3xl font-bold mb-2">MENAT</div>
+                    <div className="text-base opacity-90">AI Gateway</div>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-wakel-secondary p-4 rounded-xl text-center">
-                    <div className="text-2xl font-bold text-wakel-primary">18</div>
-                    <div className="text-sm text-wakel-muted">Countries</div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-wakel-secondary p-3 rounded-xl text-center">
+                    <div className="text-xl font-bold text-wakel-primary">18</div>
+                    <div className="text-xs text-wakel-muted">Countries</div>
                   </div>
-                  <div className="bg-wakel-secondary p-4 rounded-xl text-center">
-                    <div className="text-2xl font-bold text-wakel-primary">450M+</div>
-                    <div className="text-sm text-wakel-muted">Users</div>
+                  <div className="bg-wakel-secondary p-3 rounded-xl text-center">
+                    <div className="text-xl font-bold text-wakel-primary">450M+</div>
+                    <div className="text-xs text-wakel-muted">Users</div>
                   </div>
                 </div>
               </div>
