@@ -18,25 +18,25 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center space-x-3 rtl:space-x-reverse">
-      <Globe className="text-gray-400" size={16} />
-      <Button
-        onClick={switchToEnglish}
-        variant={language === 'en' ? 'default' : 'ghost'}
-        size="sm"
-        className="text-sm font-medium"
-      >
-        EN
-      </Button>
-      <div className="w-px h-4 bg-gray-300"></div>
-      <Button
-        onClick={switchToArabic}
-        variant={language === 'ar' ? 'default' : 'ghost'}
-        size="sm"
-        className="text-sm font-medium"
-      >
-        العربية
-      </Button>
+    <div className="flex items-center space-x-4 rtl:space-x-reverse">
+      <div className="flex items-center space-x-3 rtl:space-x-reverse bg-gray-50 rounded-full p-1">
+        <Button
+          onClick={switchToEnglish}
+          variant={language === 'en' ? 'default' : 'ghost'}
+          size="sm"
+          className="text-sm font-medium rounded-full px-4 py-2"
+        >
+          EN
+        </Button>
+        <Button
+          onClick={switchToArabic}
+          variant={language === 'ar' ? 'default' : 'ghost'}
+          size="sm"
+          className="text-sm font-medium rounded-full px-4 py-2"
+        >
+          عربي
+        </Button>
+      </div>
     </div>
   );
 }
