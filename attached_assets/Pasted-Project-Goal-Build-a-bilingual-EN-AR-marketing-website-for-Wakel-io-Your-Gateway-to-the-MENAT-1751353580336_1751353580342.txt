@@ -1,0 +1,192 @@
+Project Goal
+Build a bilingual (EN + AR) marketing website for Wakel.io – “Your Gateway to the MENAT AI Market.”
+Target audience: founders / BD leads of successful global AI tools who need a regional agent and localization partner.
+The site must look like it was crafted by a top-tier studio (20 + yrs design pedigree): clean, spacious, fast, WCAG-friendly.
+
+Hard Requirements (no deviation)
+
+Stack: Next.js 14 + TypeScript + Tailwind CSS + Framer-motion.
+
+i18n: Ship two fully mirrored pages from day-one:
+
+/ - English (LTR)
+
+/ar - Arabic (RTL, Arabic copy in “Cairo” font)
+Include a tiny LanguageSwitcher in the navbar (flag icon + text) that toggles routes.
+
+Sections (both languages, identical order):
+
+Hero
+
+About Us
+
+What We Do
+
+Why MENAT?
+
+Our Edge
+
+Contact (form)
+
+Contact Form:
+
+Front-end validation (name, company, email, message).
+
+POST to /api/contact.
+
+Server action:
+
+Store submission to sqlite table leads (id, name, company, email, message, created_at). Use better-sqlite3.
+
+Send confirmation email to m@wakel.io via Titan SMTP (nodemailer).
+
+Return JSON {ok:true}; frontend shows success toast.
+
+Env vars (Replit Secrets): SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS.
+
+Design Specs
+
+Colors: #141414 text, #F5F5F5 background, primary accent #0E7DF0 (links / buttons).
+
+Fonts: Inter (EN), Cairo (AR) via Google Fonts.
+
+Tailwind radius rounded-2xl, shadows shadow-lg, max-width 7xl.
+
+Smooth fade/slide animations on section reveal (Framer-motion).
+
+Performance: Image assets max 120 kB each, next/image & lazy-load.
+
+Accessibility: Alt text, semantic HTML5, color contrast AA+.
+
+📁 File / Folder Plan
+bash
+Copy
+Edit
+/pages
+  ├─ index.tsx        → English page
+  ├─ ar/index.tsx     → Arabic page (RTL dir)
+  ├─ api/contact.ts   → Form handler (sqlite + nodemailer)
+/components
+  ├─ Layout.tsx       → header (logo + switcher) / footer shell
+  ├─ Hero.tsx
+  ├─ About.tsx
+  ├─ Services.tsx
+  ├─ WhyMenat.tsx
+  ├─ Edge.tsx
+  ├─ ContactForm.tsx
+  └─ LanguageSwitcher.tsx
+/lib
+  └─ db.ts            → sqlite connector + ensure table
+/public
+  └─ images (3–4 SVG/PNG illustrations)
+tailwind.config.ts
+tsconfig.json
+.env.sample
+README.md (build & deploy notes)
+📝 English Copy (place inside components)
+Hero
+Heading: Your Gateway to the MENAT AI Market
+Sub: We act as your on-the-ground agent, localizing, selling and scaling AI products across 18 Arabic-speaking countries.
+CTA Button: Partner with Wakel
+
+About Us
+“Wakel” means agent in Arabic. Based in the Gulf, we bridge breakthrough AI tools with enterprises hungry for innovation.
+
+What We Do
+
+Regional agency agreements
+
+Arabic UX & voice localization
+
+B2B matchmaking with 100 + trusted marketing & system-integration partners
+
+Why MENAT?
+• 100 M+ Arabic internet users
+• AI adoption budgets growing 24 % YoY
+• Regulatory landscape clear and pro-innovation
+
+Our Edge
+Speed, cultural nuance, and a deal-ready network—so you land pilots in weeks, not quarters.
+
+Contact
+“Ready to explore MENAT? Drop us a note.”
+
+📝 Arabic Copy (mirror order, RTL)
+Hero
+Heading: بوابتك إلى سوق الذكاء الاصطناعي في منطقة الشرق الأوسط وشمال أفريقيا
+Sub: نعمل كوكيل محلي لك، نعرب، نُسوّق، ونُطوّر أدوات الذكاء الاصطناعي عبر ١٨ دولة ناطقة بالعربية.
+CTA: تواصل معنا
+
+About Us
+تعني كلمة وكيل “Wakel” بالعربية. ننطلق من الخليج لربط أدوات الذكاء الاصطناعي العالمية بالشركات العربية الطموحة.
+
+What We Do
+
+اتفاقيات الوكالة الإقليمية
+
+تعريب واجهات وتجارب المستخدم والحوارات الصوتية
+
+ربط أدواتكم بأكثر من ١٠٠ شريك تسويق وتنفيذ محلّي
+
+Why MENAT?
+• أكثر من ١٠٠ مليون مستخدم عربي للإنترنت
+• نمو ميزانيات تبني الذكاء الاصطناعي بنسبة ٢٤٪ سنوياً
+• بيئة تنظيمية داعمة للابتكار
+
+Our Edge
+السرعة، وفهم الثقافة، وشبكة جاهزة لإبرام الصفقات—لتحقيق نتائج في أسابيع، وليس شهوراً.
+
+Contact
+"جاهز لاستكشاف السوق؟ أرسل لنا رسالتك الآن."
+
+📜 Key Code Details
+db.ts
+
+ts
+Copy
+Edit
+import Database from 'better-sqlite3';
+const db = new Database('wakel.sqlite');
+db.prepare(`CREATE TABLE IF NOT EXISTS leads (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT, company TEXT, email TEXT, message TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)`).run();
+export default db;
+/api/contact.ts
+
+ts
+Copy
+Edit
+import type {NextApiRequest, NextApiResponse} from 'next';
+import nodemailer from 'nodemailer';
+import db from '../../lib/db';
+
+export default async function handler(req:NextApiRequest,res:NextApiResponse){
+  if(req.method!=='POST') return res.status(405).end();
+  const {name,company,email,message}=req.body;
+  db.prepare('INSERT INTO leads (name,company,email,message) VALUES (?,?,?,?)')
+    .run(name,company,email,message);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: true,
+    auth:{user:process.env.SMTP_USER, pass:process.env.SMTP_PASS}
+  });
+  await transporter.sendMail({
+    from:'m@wakel.io',to:'m@wakel.io',
+    subject:'New Lead – Wakel.io',
+    text:`Name: ${name}\nCompany: ${company}\nEmail: ${email}\n---\n${message}`
+  });
+  res.json({ok:true});
+}
+LanguageSwitcher.tsx – simple link toggle, uses next/router.
+
+🚀 Run & Deploy
+npm install
+
+Add secrets: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
+
+npm run dev for local; replit deploy --prod to go live.
+
+END OF SPEC
