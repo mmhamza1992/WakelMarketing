@@ -112,39 +112,55 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* MENAT Region Map Visualization */}
+                {/* AI Gateway Platform Dashboard */}
                 <div className="mb-6">
-                  <div className="text-sm font-medium text-wakel-text mb-3">MENAT Region Coverage</div>
-                  <div className="relative h-24 bg-gradient-to-r from-wakel-secondary via-wakel-secondary/50 to-wakel-secondary rounded-xl p-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-wakel-primary/10 via-wakel-accent/10 to-wakel-primary/10 rounded-xl"></div>
-                    <div className="relative z-10 flex items-center justify-center h-full">
-                      <div className="grid grid-cols-6 gap-2 opacity-80">
-                        {Array.from({ length: 18 }, (_, i) => (
+                  <div className="text-sm font-medium text-wakel-text mb-3">AI Gateway Dashboard</div>
+                  <div className="relative h-28 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-4 border border-slate-200">
+                    {/* Language Processing Status */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-wakel-primary rounded-full animate-pulse"></div>
+                        <span className="text-xs text-slate-600 font-medium">Arabic NLU Engine</span>
+                      </div>
+                      <span className="text-xs text-wakel-primary font-bold">98.5%</span>
+                    </div>
+                    
+                    {/* Processing Visualization */}
+                    <div className="relative">
+                      <div className="flex justify-between items-end mb-2">
+                        {Array.from({ length: 8 }, (_, i) => (
                           <motion.div
                             key={i}
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: i * 0.05, duration: 0.2 }}
-                            className="w-3 h-3 bg-wakel-primary rounded-full shadow-sm"
+                            initial={{ height: 4 }}
+                            animate={{ height: Math.random() * 16 + 8 }}
+                            transition={{ 
+                              duration: 1.5, 
+                              repeat: Infinity, 
+                              repeatType: "reverse",
+                              delay: i * 0.1 
+                            }}
+                            className="w-2 bg-gradient-to-t from-wakel-primary to-wakel-accent rounded-full opacity-80"
                           />
                         ))}
                       </div>
+                      <div className="text-xs text-slate-500 text-center">Real-time Processing</div>
                     </div>
-                    <div className="absolute bottom-2 left-4 text-xs text-wakel-muted">
-                      18 Markets • 450M+ Users
+                    
+                    <div className="absolute bottom-2 right-4 text-xs text-slate-500">
+                      45ms avg response
                     </div>
                   </div>
                 </div>
                 
-                {/* Market Statistics */}
+                {/* Platform Performance Metrics */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-gradient-to-br from-wakel-primary to-wakel-accent p-4 rounded-xl text-center text-white shadow-lg">
-                    <div className="text-xl font-bold">$12B+</div>
-                    <div className="text-xs opacity-90">Market Size</div>
+                  <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 p-4 rounded-xl text-center text-white shadow-lg">
+                    <div className="text-xl font-bold">100+</div>
+                    <div className="text-xs opacity-90">Partner Network</div>
                   </div>
-                  <div className="bg-gradient-to-br from-wakel-accent to-wakel-primary p-4 rounded-xl text-center text-white shadow-lg">
-                    <div className="text-xl font-bold">24%</div>
-                    <div className="text-xs opacity-90">Annual Growth</div>
+                  <div className="bg-gradient-to-br from-amber-500 to-orange-500 p-4 rounded-xl text-center text-white shadow-lg">
+                    <div className="text-xl font-bold">90 Days</div>
+                    <div className="text-xs opacity-90">Pilot to Launch</div>
                   </div>
                 </div>
               </div>
