@@ -91,22 +91,52 @@ export default function Hero() {
           >
             <div className="relative max-w-md mx-auto">
               {/* Main Visual */}
-              <div className="relative bg-white p-6 rounded-3xl shadow-2xl">
-                <div className="w-full h-48 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6">
-                  <div className="text-white text-center">
-                    <div className="text-3xl font-bold mb-2">MENAT</div>
-                    <div className="text-base opacity-90">AI Gateway</div>
+              <div className="relative bg-white p-6 rounded-3xl shadow-2xl overflow-hidden">
+                {/* Header with logo and status */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-wakel-text">Wakel.io</div>
+                      <div className="text-xs text-wakel-muted">AI Gateway</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-xs text-wakel-muted">Live</span>
+                  </div>
+                </div>
+
+                {/* Market visualization */}
+                <div className="mb-6">
+                  <div className="text-sm text-wakel-muted mb-2">Market Coverage</div>
+                  <div className="relative h-20 bg-wakel-secondary rounded-xl p-3">
+                    <div className="absolute inset-0 bg-gradient-to-r from-wakel-primary/20 via-wakel-accent/20 to-wakel-primary/20 rounded-xl"></div>
+                    <div className="relative z-10 grid grid-cols-6 gap-1 h-full">
+                      {Array.from({ length: 18 }, (_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: i * 0.1, duration: 0.3 }}
+                          className="bg-wakel-primary rounded-sm"
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
                 
+                {/* Key metrics */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-wakel-secondary p-3 rounded-xl text-center">
-                    <div className="text-xl font-bold text-wakel-primary">18</div>
-                    <div className="text-xs text-wakel-muted">Countries</div>
+                  <div className="bg-gradient-to-br from-wakel-primary to-wakel-accent p-3 rounded-xl text-center text-white">
+                    <div className="text-lg font-bold">2-4</div>
+                    <div className="text-xs opacity-90">Weeks Launch</div>
                   </div>
-                  <div className="bg-wakel-secondary p-3 rounded-xl text-center">
-                    <div className="text-xl font-bold text-wakel-primary">450M+</div>
-                    <div className="text-xs text-wakel-muted">Users</div>
+                  <div className="bg-gradient-to-br from-wakel-accent to-wakel-primary p-3 rounded-xl text-center text-white">
+                    <div className="text-lg font-bold">24/7</div>
+                    <div className="text-xs opacity-90">Support</div>
                   </div>
                 </div>
               </div>
@@ -115,17 +145,17 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 bg-wakel-accent text-white p-4 rounded-xl shadow-lg"
+                className="absolute -top-4 -right-4 bg-gradient-to-r from-wakel-accent to-purple-500 text-white p-3 rounded-xl shadow-lg"
               >
-                <Zap className="w-6 h-6" />
+                <Users className="w-5 h-5" />
               </motion.div>
 
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-                className="absolute -bottom-4 -left-4 bg-wakel-primary text-white p-4 rounded-xl shadow-lg"
+                className="absolute -bottom-4 -left-4 bg-gradient-to-r from-wakel-primary to-wakel-accent text-white p-3 rounded-xl shadow-lg"
               >
-                <Globe className="w-6 h-6" />
+                <Globe className="w-5 h-5" />
               </motion.div>
             </div>
           </motion.div>
