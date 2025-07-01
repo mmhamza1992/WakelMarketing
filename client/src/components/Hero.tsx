@@ -22,7 +22,6 @@ export default function Hero() {
         <div className="absolute top-20 left-20 w-72 h-72 bg-wakel-primary rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
         <div className="absolute bottom-20 right-20 w-72 h-72 bg-wakel-accent rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
       </div>
-
       <div className="container-spacing relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -98,9 +97,6 @@ export default function Hero() {
                 {/* Header with logo and status */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-lg">
-                      <Zap className="w-5 h-5 text-white" />
-                    </div>
                     <div>
                       <div className="font-bold text-wakel-text">Wakel.io</div>
                       <div className="text-xs text-wakel-primary font-medium">AI Gateway Platform</div>
@@ -146,9 +142,7 @@ export default function Hero() {
                       <div className="text-xs text-slate-500 text-center">Real-time Processing</div>
                     </div>
                     
-                    <div className="absolute bottom-2 right-4 text-xs text-slate-500">
-                      45ms avg response
-                    </div>
+                    
                   </div>
                 </div>
                 
@@ -169,7 +163,7 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 bg-wakel-accent text-white p-3 rounded-xl shadow-xl border-2 border-white"
+                className="absolute -top-4 -right-4 p-3 rounded-xl shadow-xl border-2 border-white bg-[#2094f3] text-[#0a0a0a]"
               >
                 <Users className="w-5 h-5" />
               </motion.div>
