@@ -43,7 +43,7 @@ export default function Layout({ children }: LayoutProps) {
                 Wakel.io
               </div>
               <div className="text-sm text-gray-300 font-medium">
-                {language === 'en' ? 'Your Gateway to MENAT AI Market' : 'بوابتك لسوق الذكاء الاصطناعي في المنطقة'}
+                {language === 'en' ? 'Your Gateway to the MENAT AI Market' : 'بوابتك لسوق الذكاء الاصطناعي في المنطقة'}
               </div>
             </div>
             <p className="text-body-large text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -79,7 +79,7 @@ export default function Layout({ children }: LayoutProps) {
                 </h3>
                 <ul className="space-y-2 text-gray-400">
                   <li>m@wakel.io</li>
-                  <li>{language === 'en' ? 'Based in Gulf' : 'مقرنا الخليج'}</li>
+                  <li>{language === 'en' ? 'Our offices are in UAE, KSA, Egypt & Jordan' : 'مكاتبنا في الإمارات والسعودية ومصر والأردن'}</li>
                   <li>{language === 'en' ? '24/7 Support' : 'دعم 24/7'}</li>
                 </ul>
               </div>

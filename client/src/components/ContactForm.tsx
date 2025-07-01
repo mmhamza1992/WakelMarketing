@@ -182,20 +182,7 @@ export default function ContactForm() {
             </Form>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <p className="text-body text-wakel-muted">
-              {language === 'en' 
-                ? 'Typically respond within 24 hours • All conversations are confidential'
-                : 'نرد عادة خلال 24 ساعة • جميع المحادثات سرية'
-              }
-            </p>
-          </motion.div>
+
         </motion.div>
       </div>
     </section>
