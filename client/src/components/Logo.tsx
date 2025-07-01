@@ -9,7 +9,7 @@ export default function Logo({ className = "" }: LogoProps) {
     <img 
       src={logoSrc} 
       alt="Wakel.io" 
-      className={`h-32 w-auto ${className}`}
+      className={`h-40 w-auto ${className}`}
     />
   );
 }
