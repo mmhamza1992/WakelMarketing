@@ -17,12 +17,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email notification
       try {
         const transporter = nodemailer.createTransport({
-          host: process.env.SMTP_HOST || "smtp.titan.email",
-          port: Number(process.env.SMTP_PORT) || 587,
-          secure: false,
+          host: "smtp.titan.email",
+          port: 465,
+          secure: true, // true for 465, false for other ports
           auth: {
-            user: process.env.SMTP_USER || "",
-            pass: process.env.SMTP_PASS || "",
+            user: "m@wakel.io",
+            pass: "Hamada12345@ge",
           },
         });
 
@@ -67,13 +67,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Send email notification about whitepaper download
       try {
-        const transporter = nodemailer.createTransporter({
-          host: process.env.SMTP_HOST || "smtp.titan.email",
-          port: Number(process.env.SMTP_PORT) || 587,
-          secure: false,
+        const transporter = nodemailer.createTransport({
+          host: "smtp.titan.email",
+          port: 465,
+          secure: true, // true for 465, false for other ports
           auth: {
-            user: process.env.SMTP_USER || "",
-            pass: process.env.SMTP_PASS || "",
+            user: "m@wakel.io",
+            pass: "Hamada12345@ge",
           },
         });
 
