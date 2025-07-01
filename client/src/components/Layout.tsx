@@ -18,15 +18,15 @@ export default function Layout({ children }: LayoutProps) {
   }, [language, isRTL]);
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
+    <div className="min-h-screen bg-wakel-surface">
       {/* Navigation */}
       <nav className="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-6">
-          <div className="flex justify-between items-center">
-            <Logo className="w-40 h-auto" />
-            <div className="ml-auto">
-              <LanguageSwitcher />
+        <div className="container-spacing">
+          <div className="flex justify-between items-center h-28">
+            <div className="flex items-center">
+              <Logo />
             </div>
+            <LanguageSwitcher />
           </div>
         </div>
       </nav>

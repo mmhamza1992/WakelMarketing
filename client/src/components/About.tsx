@@ -14,8 +14,8 @@ export default function About() {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section className="section-spacing bg-white">
+      <div className="container-spacing">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <motion.div
@@ -24,15 +24,15 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block bg-[#F5F5F5] text-[#0E7DF0] px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <div className="inline-block bg-wakel-secondary text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
               {language === 'en' ? 'About Wakel.io' : 'حول وكيل'}
             </div>
 
-            <h2 className="font-inter font-bold text-[#141414] text-3xl lg:text-4xl mb-6">
+            <h2 className="text-headline text-wakel-text mb-6">
               {aboutContent.title}
             </h2>
 
-            <p className="font-inter text-base lg:text-lg text-[#141414] mb-8 leading-relaxed">
+            <p className="text-body-large mb-8">
               {aboutContent.content}
             </p>
 

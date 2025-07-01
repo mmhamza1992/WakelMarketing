@@ -10,8 +10,8 @@ export default function Services() {
   const serviceIcons = [FileText, Globe, Handshake];
 
   return (
-    <section className="py-20 bg-[#F5F5F5]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section className="section-spacing bg-wakel-secondary">
+      <div className="container-spacing">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,15 +19,15 @@ export default function Services() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-block bg-white text-[#0E7DF0] px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <div className="inline-block bg-white text-wakel-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
             {language === 'en' ? 'Our Services' : 'خدماتنا'}
           </div>
 
-          <h2 className="font-inter font-bold text-[#141414] text-3xl lg:text-4xl mb-6">
+          <h2 className="text-headline text-wakel-text mb-6">
             {servicesContent.title}
           </h2>
 
-          <p className="font-inter text-base lg:text-lg text-[#141414] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-body-large max-w-3xl mx-auto">
             {language === 'en' 
               ? 'Three core pillars that accelerate your AI product success in MENAT markets'
               : 'ثلاث ركائز أساسية تسرع نجاح منتج الذكاء الاصطناعي في أسواق المنطقة'

@@ -1,100 +1,184 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    /* New Design System Colors */
-    --background: 245 245 245; /* #F5F5F5 */
-    --surface: 255 255 255; /* #FFFFFF */
-    --primary: 14 125 240; /* #0E7DF0 */
-    --text: 20 20 20; /* #141414 */
-    
-    /* shadcn/ui variables */
-    --foreground: 20 20 20;
-    --card: 255 255 255;
-    --card-foreground: 20 20 20;
-    --popover: 255 255 255;
-    --popover-foreground: 20 20 20;
-    --primary-foreground: 255 255 255;
-    --secondary: 245 245 245;
-    --secondary-foreground: 20 20 20;
-    --muted: 245 245 245;
-    --muted-foreground: 107 114 128;
-    --accent: 245 245 245;
-    --accent-foreground: 20 20 20;
-    --destructive: 239 68 68;
-    --destructive-foreground: 255 255 255;
-    --border: 229 229 229;
-    --input: 229 229 229;
-    --ring: 14 125 240;
-    --radius: 1rem;
-  }
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 3.9%);
+  --muted: hsl(0, 0%, 96.1%);
+  --muted-foreground: hsl(0, 0%, 45.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 3.9%);
+  --border: hsl(0, 0%, 89.8%);
+  --input: hsl(0, 0%, 89.8%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(0, 0%, 96.1%);
+  --secondary-foreground: hsl(0, 0%, 9%);
+  --accent: hsl(0, 0%, 96.1%);
+  --accent-foreground: hsl(0, 0%, 9%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(207, 90%, 54%);
+  --radius: 0.75rem;
+  
+  /* Wakel.io brand system */
+  --wakel-primary: hsl(207, 90%, 54%);
+  --wakel-secondary: hsl(207, 90%, 96%);
+  --wakel-accent: hsl(45, 100%, 51%);
+  --wakel-text: hsl(0, 0%, 8%);
+  --wakel-muted: hsl(0, 0%, 45%);
+  --wakel-surface: hsl(0, 0%, 98%);
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  
-  body {
-    @apply bg-[#F5F5F5] text-[#141414];
-    font-family: 'Inter', sans-serif;
-  }
-  
-  /* Typography Hierarchy */
-  h1 {
-    font-family: 'Inter', sans-serif;
-    @apply font-bold text-[#141414] text-5xl lg:text-6xl;
-  }
-  
-  h2 {
-    font-family: 'Inter', sans-serif;
-    @apply font-bold text-[#141414] text-3xl lg:text-4xl;
-  }
-  
-  h3 {
-    font-family: 'Inter', sans-serif;
-    @apply font-bold text-[#141414] text-2xl lg:text-3xl;
-  }
-  
-  p {
-    font-family: 'Inter', sans-serif;
-    @apply text-base lg:text-lg text-[#141414];
-  }
+* {
+  border-color: hsl(var(--border));
 }
 
-/* Arabic RTL support */
-.ar {
+body {
+  background-color: var(--wakel-surface);
+  color: var(--wakel-text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[dir="rtl"] body {
   font-family: 'Cairo', sans-serif;
-  direction: rtl;
 }
 
-/* Focus states for accessibility */
-button:focus, 
-a:focus, 
-input:focus, 
-textarea:focus, 
-select:focus {
-  @apply outline-none ring-2 ring-[#0E7DF0] ring-offset-2;
+/* Typography System */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--wakel-text);
 }
 
-/* Container utility */
-.container-default {
-  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+.text-display {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
 }
 
-/* Section spacing */
+.text-headline {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.text-body-large {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--wakel-muted);
+}
+
+.text-body {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--wakel-muted);
+}
+
+/* Layout System */
 .section-spacing {
-  @apply py-20;
+  padding: clamp(4rem, 8vw, 6rem) 0;
 }
 
-.section-spacing-first {
-  @apply pt-24 pb-20;
+.container-spacing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 2rem);
 }
 
-.section-spacing-last {
-  @apply py-20 pb-24;
+/* Component System */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--wakel-primary) 0%, hsl(207, 85%, 48%) 100%);
+}
+
+.gradient-subtle {
+  background: linear-gradient(135deg, var(--wakel-secondary) 0%, hsl(207, 90%, 98%) 100%);
+}
+
+.card-elevated {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-elevated:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--wakel-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 14px 0 rgba(14, 125, 240, 0.3);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: hsl(207, 85%, 48%);
+  box-shadow: 0 6px 20px 0 rgba(14, 125, 240, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--wakel-primary);
+  border: 2px solid var(--wakel-primary);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--wakel-primary);
+  color: white;
+}
+
+/* Utility Classes */
+.text-wakel-primary { color: var(--wakel-primary); }
+.text-wakel-text { color: var(--wakel-text); }
+.text-wakel-muted { color: var(--wakel-muted); }
+.bg-wakel-primary { background-color: var(--wakel-primary); }
+.bg-wakel-secondary { background-color: var(--wakel-secondary); }
+.bg-wakel-surface { background-color: var(--wakel-surface); }
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
 }
