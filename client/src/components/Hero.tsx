@@ -25,7 +25,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="lg:col-span-7 max-w-4xl"
           >
-            <h1 className="text-heading text-wakel-text leading-tight mb-8">
+            <h1 className="text-hero-title text-wakel-text leading-tight mb-12">
               {language === 'en' ? (
                 <>
                   Your Gateway to the{' '}
@@ -35,7 +35,7 @@ export default function Hero() {
                 heroContent.title
               )}
             </h1>
-            <p className="text-large text-gray-600 mb-12 leading-relaxed max-w-2xl">
+            <p className="text-large text-gray-600 mb-16 leading-relaxed max-w-3xl">
               {heroContent.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

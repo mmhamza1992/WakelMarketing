@@ -22,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Navigation */}
       <nav className="bg-white/90 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
         <div className="container-spacing">
-          <div className="flex justify-between items-center h-24">
+          <div className="flex justify-between items-center h-36">
             <div className="flex items-center">
               <Logo />
             </div>

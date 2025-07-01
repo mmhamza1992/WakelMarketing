@@ -88,15 +88,19 @@
   }
 
   .text-large {
-    @apply text-xl lg:text-2xl;
+    @apply text-2xl lg:text-3xl xl:text-4xl;
   }
 
   .text-heading {
-    @apply text-4xl lg:text-5xl xl:text-6xl font-bold;
+    @apply text-6xl lg:text-7xl xl:text-8xl font-bold;
   }
 
   .text-section-title {
-    @apply text-3xl lg:text-4xl font-bold;
+    @apply text-5xl lg:text-6xl xl:text-7xl font-bold;
+  }
+
+  .text-hero-title {
+    @apply text-7xl lg:text-8xl xl:text-9xl font-bold;
   }
 }
 
