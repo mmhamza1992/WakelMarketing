@@ -15,7 +15,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-wakel-surface">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-wakel-surface py-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-wakel-primary via-transparent to-wakel-accent"></div>

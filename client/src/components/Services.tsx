@@ -10,8 +10,8 @@ export default function Services() {
   const serviceIcons = [FileText, Globe, Handshake];
 
   return (
-    <section className="section-spacing bg-wakel-secondary">
-      <div className="container-spacing">
+    <section className="py-20 lg:py-32 bg-wakel-secondary">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
