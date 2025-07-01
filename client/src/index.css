@@ -1,32 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap');
-
 :root {
   --background: hsl(0, 0%, 96.1%);
   --foreground: hsl(0, 0%, 7.8%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --muted: hsl(0, 0%, 94%);
+  --muted-foreground: hsl(0, 0%, 45%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --popover-foreground: hsl(0, 0%, 7.8%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
+  --card-foreground: hsl(0, 0%, 7.8%);
+  --border: hsl(0, 0%, 90%);
+  --input: hsl(0, 0%, 95%);
   --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(60, 4.8%, 95.9%);
-  --secondary-foreground: hsl(24, 9.8%, 10%);
-  --accent: hsl(60, 4.8%, 95.9%);
-  --accent-foreground: hsl(24, 9.8%, 10%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(0, 0%, 96%);
+  --secondary-foreground: hsl(0, 0%, 7.8%);
+  --accent: hsl(0, 0%, 96%);
+  --accent-foreground: hsl(0, 0%, 7.8%);
   --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(20, 14.3%, 4.1%);
-  --radius: 1rem;
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(207, 90%, 54%);
+  --radius: 0.5rem;
   
-  /* Wakel.io specific colors */
+  /* Wakel.io brand colors */
   --wakel-text: hsl(0, 0%, 7.8%);
   --wakel-background: hsl(0, 0%, 96.1%);
   --wakel-primary: hsl(207, 90%, 54%);
@@ -62,6 +62,7 @@
   body {
     @apply bg-wakel-background text-wakel-text font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    line-height: 1.6;
   }
 
   body.rtl {
@@ -69,25 +70,33 @@
     font-family: 'Cairo', sans-serif;
   }
 
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  .fade-in:nth-child(1) { animation-delay: 0.1s; }
-  .fade-in:nth-child(2) { animation-delay: 0.2s; }
-  .fade-in:nth-child(3) { animation-delay: 0.3s; }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    letter-spacing: -0.02em;
   }
 
   .gradient-bg {
     background: linear-gradient(135deg, hsl(207, 90%, 54%) 0%, hsl(207, 85%, 50%) 100%);
+  }
+
+  .section-spacing {
+    @apply py-24 lg:py-32;
+  }
+
+  .container-spacing {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  .text-large {
+    @apply text-xl lg:text-2xl;
+  }
+
+  .text-heading {
+    @apply text-4xl lg:text-5xl xl:text-6xl font-bold;
+  }
+
+  .text-section-title {
+    @apply text-3xl lg:text-4xl font-bold;
   }
 }
 

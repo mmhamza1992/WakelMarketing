@@ -1,6 +1,7 @@
 import { ReactNode, useEffect } from 'react';
 import { useLanguage } from '@/hooks/use-language';
 import LanguageSwitcher from './LanguageSwitcher';
+import Logo from './Logo';
 import { content } from '@/lib/content';
 
 interface LayoutProps {
@@ -19,11 +20,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-wakel-background">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <nav className="bg-white/90 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+        <div className="container-spacing">
+          <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-wakel-primary">Wakel.io</div>
+              <Logo />
             </div>
             <LanguageSwitcher />
           </div>
@@ -34,13 +35,13 @@ export default function Layout({ children }: LayoutProps) {
       <main>{children}</main>
 
       {/* Footer */}
-      <footer className="bg-wakel-text text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <footer className="bg-wakel-text text-white py-16">
+        <div className="container-spacing">
           <div className="text-center">
-            <div className="text-2xl font-bold text-wakel-primary mb-4">Wakel.io</div>
-            <p className="text-gray-300">{content[language].footer.tagline}</p>
-            <div className="mt-6">
-              <p className="text-sm text-gray-400">© 2024 Wakel.io. All rights reserved.</p>
+            <Logo className="mx-auto mb-6 filter brightness-0 invert" />
+            <p className="text-gray-300 text-lg mb-8">{content[language].footer.tagline}</p>
+            <div className="border-t border-gray-700 pt-8 mt-8">
+              <p className="text-sm text-gray-400">© 2025 Wakel.io. All rights reserved.</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,93 @@
+📣 Replit Build Revision Brief – Wakel.io
+The current result is unacceptable — it looks like something built by a beginner or an AI template generator with zero understanding of branding, structure, or execution. This is not acceptable for a company offering agency representation for global AI products.
+
+🔁 What went wrong:
+Only one page was built despite my detailed prompt calling for bilingual multi-page layout (/ and /ar) with full section breakdown.
+
+All elements look generic and lazy: stock buttons, meaningless photos, soulless layout. Nothing about this site communicates the trust, expertise, or regional insight that Wakel.io stands for.
+
+Logo was ignored — I am attaching a logo that must be used.
+
+Color palette and typography were not respected as per original instructions.
+
+🛠 What needs to be rebuilt — properly this time:
+✅ Use This Logo
+Use this exact image as the main logo:
+[Attach: Wakel.io logo → A_digital_vector_logo_design_features_the_word_"Wa.png]
+It must appear top-left in the navbar on both English and Arabic versions.
+
+✅ Required Pages
+/ → English homepage (LTR)
+
+/ar → Arabic homepage (RTL)
+
+✅ Section Structure (Both Languages)
+Hero Section (Tagline + CTA)
+
+About Wakel
+
+What We Do
+
+Why MENAT
+
+Our Edge
+
+Contact Us (with working form)
+
+✅ Contact Form Functionality
+Store contact submissions in a SQLite database called leads
+
+Send email via Titan Mail SMTP to m@wakel.io
+
+Use working backend /api/contact with nodemailer + better-sqlite3
+
+✅ Branding Guidelines
+Colors:
+
+Background: #F5F5F5
+
+Text: #141414
+
+Primary Accent: #0E7DF0
+
+Fonts:
+
+English: Inter
+
+Arabic: Cairo (RTL layout, aligned right, full translation)
+
+Style:
+
+Sharp layout
+
+Big clean spacing (like Stripe, Vercel, or Linear)
+
+Absolutely no cartoonish icons or “happy face AI” crap
+
+Use subtle professional tech illustrations only if needed
+
+✅ Language Toggle
+Simple top-right switch (flag + label EN/AR)
+
+When on /, toggle sends to /ar and vice versa
+
+✅ Deploy-Ready Architecture
+Use:
+
+Next.js 14
+
+TypeScript
+
+Tailwind CSS
+
+Framer Motion
+
+better-sqlite3 for database
+
+nodemailer for SMTP
+
+dotenv for secure config (.env.sample should be included)
+
+✅ Reminder: This site must feel designed by a senior product team — not an AI slapped-together template.
+The message is trust, expertise, and regional business fluency — not generic SaaS.
+Revisit the full prompt I gave you and rebuild accordingly.
