@@ -54,6 +54,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Whitepaper download notification endpoint
+  app.post("/api/whitepaper-download", async (req, res) => {
+    try {
+      const { name, email, company } = req.body;
+      
+      if (!name || !email || !company) {
+        return res.status(400).json({ 
+          error: "Missing required fields: name, email, company" 
+        });
+      }
+
+      // Send email notification about whitepaper download
+      try {
+        const transporter = nodemailer.createTransporter({
+          host: process.env.SMTP_HOST || "smtp.titan.email",
+          port: Number(process.env.SMTP_PORT) || 587,
+          secure: false,
+          auth: {
+            user: process.env.SMTP_USER || "",
+            pass: process.env.SMTP_PASS || "",
+          },
+        });
+
+        await transporter.sendMail({
+          from: process.env.SMTP_USER || "noreply@wakel.io",
+          to: "m@wakel.io",
+          subject: "Whitepaper Downloaded – MENAT AI Market Report",
+          html: `
+            <h2>Whitepaper Download Notification</h2>
+            <p>Someone has downloaded the MENAT AI Market Whitepaper:</p>
+            
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Company:</strong> ${company}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            
+            <hr>
+            <p><strong>Document:</strong> Wakel.io White Paper (2025) - Unlocking MENAT for Global AI Tools</p>
+            <p><strong>Downloaded on:</strong> ${new Date().toLocaleString()}</p>
+            
+            <p><em>This is a high-value lead interested in MENAT AI market entry. Consider following up within 24 hours.</em></p>
+          `,
+        });
+        
+        res.json({ success: true, message: "Download notification sent" });
+      } catch (emailError) {
+        console.error("Whitepaper email sending failed:", emailError);
+        res.status(500).json({ error: "Failed to send notification email" });
+      }
+    } catch (error) {
+      console.error("Whitepaper download error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
