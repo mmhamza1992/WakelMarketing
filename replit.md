@@ -115,7 +115,8 @@ This is a bilingual (English/Arabic) marketing website for Wakel.io, designed as
 ## Changelog
 
 - July 01, 2025 - Initial setup
-- July 01, 2025 - Database integration: Replaced MemStorage with PostgreSQL DatabaseStorage implementation
+- July 01, 2025 - Database integration: Replaced MemStorage with PostgreSQL DatabaseStorage implementation  
+- July 02, 2025 - SMTP configuration: Moved hardcoded email credentials to environment variables for security
 
 ## User Preferences
 
